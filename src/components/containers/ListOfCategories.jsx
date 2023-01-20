@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components'
 import React, { useEffect, useState } from 'react'
-import { Category } from './Category.jsx'
+import { Category } from '../Category.jsx'
 
 function useCategoriesData () {
   const [categories, setCategories] = useState([])

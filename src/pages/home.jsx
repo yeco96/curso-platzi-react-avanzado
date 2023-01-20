@@ -1,7 +1,7 @@
 import React from 'react'
 import { useParams } from 'react-router-dom'
-import { ListOfCategories } from '../components/ListOfCategories.jsx'
-import { ListOfPhotoCards } from '../components/ListOfPhotoCards.jsx'
+import { ListOfCategories } from '../components/containers/ListOfCategories.jsx'
+import { ListOfPhotoCards } from '../components/containers/ListOfPhotoCards.jsx'
 
 export function Home () {
   const { id } = useParams()

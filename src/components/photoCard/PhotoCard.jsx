@@ -1,10 +1,10 @@
 import React from 'react'
 import styled from 'styled-components'
-import { fadeIn } from '../styles/animation'
-import { useLocalStorage } from '../hooks/useLocalStorage'
-import { useNearScreen } from '../hooks/useNearScreen'
-import { LikeButton } from './LikeButton.jsx'
-import { gql, useMutation } from '@apollo/client'
+import { fadeIn } from '../../styles/animation'
+import { useLocalStorage } from '../../hooks/useLocalStorage'
+import { useNearScreen } from '../../hooks/useNearScreen'
+import { LikeButton } from '../LikeButton.jsx'
+import { useLikeAnonymousPhoto } from '../../data/useLikeAnonymousPhoto.js'
 
 const DEFAULT_IMAGE = 'https://images.unsplash.com/photo-1611915387288-fd8d2f5f928b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxleHBsb3JlLWZlZWR8MXx8fGVufDB8fHx8&w=1000&q=80'
 
@@ -13,18 +13,8 @@ export const PhotoCard = ({ id, likes = 0, src = DEFAULT_IMAGE }) => {
   const key = `like-${id}`
   const [liked, setLiked] = useLocalStorage(key, false)
 
-  const LIKE_PHOTO = gql`
-  mutation likeAnonymousPhoto($input: LikePhoto!) {
-    likeAnonymousPhoto(input: $input) {
-      id,
-      liked,
-      likes
-    }
-  }
-`
-
   // eslint-disable-next-line no-unused-vars
-  const [likePhoto, { data, loading, error }] = useMutation(LIKE_PHOTO)
+  const [likePhoto, { data, loading, error }] = useLikeAnonymousPhoto()
   const handleLike = async () => {
     await likePhoto({ variables: { input: { id } } })
     setLiked(!liked)

@@ -1,6 +1,6 @@
 import React from 'react'
-import { PhotoCard } from '../components/PhotoCard.jsx'
-import { useGetSinglePhoto } from '../hoc/useGetSinglePhoto.js'
+import { PhotoCard } from './PhotoCard.jsx'
+import { useGetSinglePhoto } from '../../data/useGetSinglePhoto.js'
 
 export const PhotoCardWithQuery = ({ id }) => {
   console.log(id)

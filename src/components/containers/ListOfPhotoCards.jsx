@@ -1,8 +1,8 @@
 import React from 'react'
 import styled from 'styled-components'
-import { PhotoCard } from './PhotoCard.jsx'
+import { PhotoCard } from '../photoCard/PhotoCard.jsx'
 
-import { useGetPhotos } from '../hoc/useGetPhotos.js'
+import { useGetPhotos } from '../../data/useGetPhotos.js'
 
 export const ListOfPhotoCards = ({ categoryId }) => {
   const { data, loading, error } = useGetPhotos(categoryId)
