@@ -19,7 +19,7 @@ function useCategoriesData () {
   return { categories, loading }
 }
 
-export const ListOFCategories = () => {
+export const ListOfCategories = () => {
   const { categories, loading } = useCategoriesData()
   const [showFixed, setShowFixed] = useState(false)
 

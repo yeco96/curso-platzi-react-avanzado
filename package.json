@@ -8,7 +8,7 @@
     "buildOld": "webpack ./src/index.js --mode development",
     "build": "webpack --mode production",
     "vercel-build": "npm run build",
-    "dev": "webpack-dev-server --mode development",
+    "dev": "webpack-dev-server --mode development --history-api-fallback",
     "lint": "standard",
     "lint-fix": "standard --fix"
   },
@@ -40,6 +40,7 @@
     "graphql": "^16.6.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-router-dom": "^6.6.2",
     "styled-components": "^5.3.6"
   },
   "standard": {

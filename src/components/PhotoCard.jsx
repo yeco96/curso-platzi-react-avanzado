@@ -1,9 +1,10 @@
 import React from 'react'
 import styled from 'styled-components'
 import { fadeIn } from '../styles/animation'
-import { MdFavoriteBorder, MdFavorite } from 'react-icons/md'
 import { useLocalStorage } from '../hooks/useLocalStorage'
 import { useNearScreen } from '../hooks/useNearScreen'
+import { LikeButton } from './LikeButton.jsx'
+import { gql, useMutation } from '@apollo/client'
 
 const DEFAULT_IMAGE = 'https://images.unsplash.com/photo-1611915387288-fd8d2f5f928b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxleHBsb3JlLWZlZWR8MXx8fGVufDB8fHx8&w=1000&q=80'
 
@@ -12,7 +13,23 @@ export const PhotoCard = ({ id, likes = 0, src = DEFAULT_IMAGE }) => {
   const key = `like-${id}`
   const [liked, setLiked] = useLocalStorage(key, false)
 
-  const Icon = liked ? MdFavorite : MdFavoriteBorder
+  const LIKE_PHOTO = gql`
+  mutation likeAnonymousPhoto($input: LikePhoto!) {
+    likeAnonymousPhoto(input: $input) {
+      id,
+      liked,
+      likes
+    }
+  }
+`
+
+  const [likePhoto, { data, loading, error }] = useMutation(LIKE_PHOTO)
+  const handleLike = async () => {
+    await likePhoto({ variables: { input: { id } } })
+    setLiked(!liked)
+  }
+
+  if (error) return `Submission error! ${error.message}`
 
   return (
     <Article ref={element}>
@@ -25,9 +42,7 @@ export const PhotoCard = ({ id, likes = 0, src = DEFAULT_IMAGE }) => {
               </ImgWrapper>
             </a>
 
-            <Button onClick={() => setLiked(!liked)}>
-              <Icon size='32px' /> {likes} likes!
-            </Button>
+            <LikeButton liked={liked} likes={likes} loading={loading} onClick={handleLike} />
           </>
       }
     </Article>

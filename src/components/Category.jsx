@@ -1,15 +1,23 @@
 import React from 'react'
 import styled from 'styled-components'
+import { Link as LinkRouter } from 'react-router-dom'
+
 const DEFAULT_IMAGE = 'https://i.imgur.com/LXThhia.jpeg'
 
 export const Category = ({ cover = DEFAULT_IMAGE, path = '/', emoji = '?' }) => (
-  <Anchor
-    href={path}
-  >
-    <Image src={cover} alt='cover image' />
+  <Link to={path}>
+    <Image src={cover} />
     {emoji}
-  </Anchor>
+  </Link>
 )
+
+export const Link = styled(LinkRouter)`
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  text-decoration: none;
+  width: 75px
+`
 
 export const Anchor = styled.a`
   display: flex;

@@ -1,10 +1,9 @@
 import HtmlWebpackPlugin from 'html-webpack-plugin'
-import path from 'path'
 
 export default {
   output: {
     filename: 'app.bundle.js',
-    path: path.resolve('public')
+    publicPath: '/'
   },
   plugins: [
     new HtmlWebpackPlugin({
