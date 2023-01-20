@@ -23,6 +23,7 @@ export const PhotoCard = ({ id, likes = 0, src = DEFAULT_IMAGE }) => {
   }
 `
 
+  // eslint-disable-next-line no-unused-vars
   const [likePhoto, { data, loading, error }] = useMutation(LIKE_PHOTO)
   const handleLike = async () => {
     await likePhoto({ variables: { input: { id } } })
@@ -71,13 +72,4 @@ const Img = styled.img`
   position: absolute;
   top: 0;
   width: 100%;
-`
-
-const Button = styled.button`
-  display: flex;
-  align-items: center;
-  padding-top: 8px;
-  & svg {
-    margin-right: 4px;
-  }
 `
